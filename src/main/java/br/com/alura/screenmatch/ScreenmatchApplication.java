@@ -22,22 +22,17 @@ public class ScreenmatchApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		Scanner busca = new Scanner(System.in);
-		String serieNome = busca.nextLine();
-		ConsumoAPI consumoApi = new ConsumoAPI();
-		String json = consumoApi.obterDados("https://www.omdbapi.com/?t="+serieNome+"&apikey=533ccdd7");
-		//System.out.println(json);
-		ConverteDados conversor = new ConverteDados();
-		DataSerie dados = conversor.obterDados(json, DataSerie.class);
-		//System.out.println(dados);
-		//json = consumoApi.obterDados("https://www.omdbapi.com/?t=supernatural&season=3&episode=2&apikey=533ccdd7");
-		//DataEpisode dadosEp = conversor.obterDados(json, DataEpisode.class);
-		//System.out.println(dadosEp);
-
 		/*
 		IMPLEMENTANDO SCANNER
 
 		 */
+		Scanner busca = new Scanner(System.in);
+		String serieNome = busca.nextLine();
+		ConsumoAPI consumoApi = new ConsumoAPI();
+		String json = consumoApi.obterDados("https://www.omdbapi.com/?t="+serieNome+"&apikey=533ccdd7");
+		ConverteDados conversor = new ConverteDados();
+		DataSerie dados = conversor.obterDados(json, DataSerie.class);
+
 
 
 		List<DataSeason> temporadas = new ArrayList<>();
@@ -48,10 +43,6 @@ public class ScreenmatchApplication implements CommandLineRunner {
 
 		}
 		temporadas.forEach(System.out::println);
-		/*
-		json = consumoApi.obterDados("https://www.omdbapi.com/?t=supernatural&season=3&apikey=533ccdd7");
-		DataSeason dadosTem = conversor.obterDados(json, DataSeason.class);
-		dadosTem.episodios().forEach(System.out::println);
-		*/
+
 	}
 }
