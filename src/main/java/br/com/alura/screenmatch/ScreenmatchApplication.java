@@ -16,14 +16,7 @@ public class ScreenmatchApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		Menu menu = new Menu();
 		menu.exibeMenu();
-//		List<DataSeason> temporadas = new ArrayList<>();
-//		for (int i = 1; i <= dados.totalTemporadas(); i++){
-//			json = consumoApi.obterDados("https://www.omdbapi.com/?t="+ serieNome+"&season="+i+"&apikey=533ccdd7");
-//			DataSeason dadosTem = conversor.obterDados(json, DataSeason.class);
-//			temporadas.add(dadosTem);
-//
-//		}
-//		temporadas.forEach(System.out::println);
+
 
 	}
 }

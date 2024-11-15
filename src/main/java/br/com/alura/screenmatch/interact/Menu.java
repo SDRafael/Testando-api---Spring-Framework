@@ -22,7 +22,7 @@ public class Menu {
         String serieNome = busca.nextLine();
         String json = consumoApi.obterDados(MAIN_URL+serieNome.replace(" ","+")+API_KEY);
         DataSerie dados = conversor.obterDados(json, DataSerie.class);
-
+        System.out.println(dados);
         List<DataSeason> temporadas = new ArrayList<>();
         for (int i = 1; i <= dados.totalTemporadas(); i++){
             json = consumoApi.obterDados(MAIN_URL+serieNome.replace(" ", "+")+"&season="+i+API_KEY);
