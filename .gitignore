@@ -31,3 +31,8 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Aplication properties ###
+src/main/resources/application.properties
+src/main/java/br/com/alura/screenmatch/ExemploFindAnyParallelStream.java
+
