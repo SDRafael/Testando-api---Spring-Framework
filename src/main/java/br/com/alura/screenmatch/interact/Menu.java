@@ -3,8 +3,10 @@ package br.com.alura.screenmatch.interact;
 import br.com.alura.screenmatch.models.DataSeason;
 import br.com.alura.screenmatch.models.DataSerie;
 import br.com.alura.screenmatch.models.Serie;
+import br.com.alura.screenmatch.repository.SerieRepository;
 import br.com.alura.screenmatch.service.ConsumoAPI;
 import br.com.alura.screenmatch.service.ConverteDados;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -18,6 +20,14 @@ public class Menu {
     private ConverteDados conversor = new ConverteDados();
     private String json;
     private List<DataSerie> serieList = new ArrayList<>();
+
+
+    private SerieRepository repositorio;
+
+    public Menu(SerieRepository repositorio) {
+        this.repositorio = repositorio;
+    }
+
     public void exibeMenu() {
         String opcao = "";
         while(!opcao.equals("0")){
@@ -56,10 +66,7 @@ public class Menu {
     }
 
     private void listSearchedSeries() {
-        List<Serie> series = new ArrayList<>();
-        series = serieList.stream()
-                .map(s -> new Serie(s))
-                        .collect(Collectors.toList());
+        List<Serie> series = repositorio.findAll();
         series.stream().sorted(Comparator.comparing(Serie::getGenero))
                 .forEach(System.out::println);
     }
@@ -74,7 +81,9 @@ public class Menu {
 
     private void searchSerie() {
         DataSerie data = getDataSerie();
-        serieList.add(data);
+        Serie serie= new Serie(data);
+        //serieList.add(data);
+        repositorio.save(serie);
         System.out.println(data);
     }
     private void searchEpisode() {
